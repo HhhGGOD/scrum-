@@ -368,10 +368,10 @@ li {
 }
 
 .search_wrap_select {
-  display: block;
+  /* display: block; */
   /* width: 94px !important; */
   height: 32px;
-
+  display: flex
 }
 
 
