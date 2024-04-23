@@ -8,7 +8,6 @@ function Header() {
         <div className="icon_blue"></div>
         <h2>Jira Software</h2>
       </button>
-
       <ProjectPopover />
       <UserPopover />
     </div>

@@ -187,18 +187,18 @@ li {
   font-size: 24px;
 }
 
-.header_wrap_body {
+.header_warp_body {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  /* align-items: center; */
   /* width: 370px; */
   height: 60px;
   margin-left: 20px;
 }
 
 /* .header_wrap-left {
-  /* display: flex; */
-/* } */
+  display: flex;
+} */
 
 
 .header_logo {
