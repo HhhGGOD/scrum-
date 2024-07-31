@@ -1,29 +1,52 @@
 import { Menu } from 'antd'
-// import Kanban from '../kanban'
-import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 
 
 function LeftMenu() {
-  return (
-    <div className='left_menu'>
-      <Menu mode={'inline'}>
-        <Menu.Item key={'kanban'}>
-          <NavLink
-            to={'/project/:id/kanban'}
-            className='link_title'
-            style={{ color: 'black', fontSize: '16px' }}>kan ban</NavLink>
-        </Menu.Item>
+    const location = useLocation()
+    const [active, set_active] = useState('')
+    const params = useParams()
+    const navigate = useNavigate()
+    // 经典错误
+    
+    const pathname = location.pathname;
+    const key_arr = pathname.split('/')
+    // console.log(key_arr)
+    // set_active(key_arr[3])
 
-        <Menu.Item key={'epic'}>
-          <NavLink
-            to={'/project/:id/epic'}
-            className='link_title'
-            style={{ color: 'black', fontSize: '16px' }}>ren wu lan</NavLink>
-        </Menu.Item>
-      </Menu>
-    </div>
-  )
+    useEffect(() => {
+        // console.log('key_arr[3]', key_arr[3])
+        set_active(key_arr[3])
+    }, [])
+
+    const items = [{
+        label: '看板',
+        key: 'kanban',
+    }, {
+        label: '任务组',
+        key: 'epic',
+    }]
+
+    function menu_click(e) {
+        const key = e.key;
+        set_active(key)
+        const id = params.id
+        navigate(`/project/${id}/${key}`)
+    }
+
+    return (
+        <div className='left_menu'>
+            <Menu
+                onClick={menu_click}
+                selectedKeys={active}
+                mode={'inline'}
+                items={items}
+            >
+            </Menu>
+        </div>
+    )
 }
 
-export default LeftMenu
+export default LeftMenu;
